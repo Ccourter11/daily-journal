@@ -10,3 +10,4 @@ export const JournalEntryComponent = (entry) => {
         </section>
     `;
 };
+<article class=".formContainer"></article>;
