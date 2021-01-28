@@ -1,7 +1,11 @@
 form {
   display: flex;
   flex-direction: column;
+  border-style: groove;
 }
-fieldset {
+/* fieldset {
   width: 75%;
+} */
+fieldset {
+  padding: 1px;
 }
