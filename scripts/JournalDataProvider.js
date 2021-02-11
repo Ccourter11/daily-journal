@@ -1,47 +1,29 @@
-/*
- *   Journal data provider for Daily Journal application
- *
- *      Holds the raw data about each entry and exports
- *      functions that other modules can use to filter
- *      the entries for different purposes.
- */
+let journal = [];
 
-// This is the original data.
-
-const journal = [
-  {
-    id: 1,
-    date: "07/24/2025",
-    concept: "HTML & CSS",
-    entry:
-      "We talked about HTML components and how to make grid layouts with Flexbox in CSS.",
-    mood: "Eager",
-  },
-  {
-    id: 2,
-    date: "07/26/2025",
-    concept: "Complex Flexbox",
-    entry:
-      "I tried to have an element in my Flexbox layout also be another Flexbox layout. It hurt my brain. I hate Steve.",
-    mood: "Sad",
-  },
-  {
-    id: 3,
-    date: "07/27/2025",
-    concept: "Machine Learning",
-    entry: "I'm not sure of anything anymore",
-    mood: "sad",
-  },
-];
-
-/*
-    You export a function that provides a version of the
-    raw data in the format that you want
-*/
-export const useJournalEntries = () => {
-  const sortedByDate = journal.sort(
-    (currentEntry, nextEntry) =>
-      Date.parse(currentEntry.date) - Date.parse(nextEntry.date)
+export const UseJournalEntries = () => {
+  const journalCopy = journal.slice();
+  const sortedByDate = journalCopy.sort(
+    (curretEntry, nextEntry) =>
+      Date.parse(nextEntry.date) - Date.parse(curretEntry.date)
   );
   return sortedByDate;
+};
+
+export const getEntries = () => {
+  return fetch("http://localhost:8088/entries")
+    .then((response) => response.json())
+    .then((parsedEntries) => {
+      console.table(parsedEntries);
+      journal = parsedEntries;
+    });
+};
+
+export const saveEntry = (entryObject) => {
+  return fetch("http://localhost:8088/entries", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(entryObject),
+  });
 };

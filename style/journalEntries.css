@@ -1,0 +1,15 @@
+.journalEntry {
+  background-color: rgb(125, 125, 125);
+  margin: 1em;
+}
+
+.postHeader {
+  display: flex;
+  width: 65%;
+  justify-content: space-between;
+  margin: 0.2em 0 0.5em 0.3em;
+}
+
+.postContent {
+  margin: 0 0 0.2em 0.5em;
+}

@@ -1,0 +1,9 @@
+.pageFooter {
+  order: 2;
+}
+
+.footer__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
